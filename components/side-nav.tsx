@@ -8,7 +8,7 @@ const navItems = [
     { id: "signals", label: "About" },
     { id: "work", label: "Projects" },
     { id: "principles", label: "Approach" },
-    { id: "colophon", label: "Contact" },
+    { id: "colophon", label: "Outro" },
 ];
 
 export function SideNav() {

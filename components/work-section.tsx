@@ -20,7 +20,20 @@ interface Repository {
     } | null;
 }
 
-const getSpan = (index: number) => {
+const getSpan = (index: number, total: number) => {
+    if (total === 1) {
+        return "col-span-2 md:col-span-4 row-span-2";
+    }
+    if (total === 2) {
+        return "col-span-1 md:col-span-2 row-span-2";
+    }
+    if (total === 3) {
+        if (index === 0) {
+            return "col-span-1 md:col-span-2 row-span-2";
+        }
+        return "col-span-1 md:col-span-2 row-span-1";
+    }
+
     const spans = [
         "col-span-2 row-span-2", // featured (large) card
         "col-span-1 row-span-1",
@@ -195,7 +208,7 @@ export function WorkSection() {
                             repository={repo}
                             index={index}
                             persistHover={index === 0}
-                            span={getSpan(index)}
+                            span={getSpan(index, repositories.length)}
                         />
                     ))
                 )}

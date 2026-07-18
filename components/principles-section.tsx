@@ -12,44 +12,48 @@ export function PrinciplesSection() {
     const headerRef = useRef<HTMLDivElement>(null);
     const principlesRef = useRef<HTMLDivElement>(null);
     //Headings
-    const principles = [
-        {
-            number: "01",
-            titleParts: [
-                { text: "BUILD", highlight: true },
-                { text: " IN PUBLIC", highlight: false },
-            ],
-            description: "Keep shipping visible work so progress is easy to follow and easy to improve.",
-            align: "left",
-        },
-        {
-            number: "02",
-            titleParts: [
-                { text: "SHIPPING", highlight: true },
-                { text: " > POLISH", highlight: false },
-            ],
-            description: "Favor useful progress and real feedback over perfect work that never gets out.",
-            align: "right",
-        },
-        {
-            number: "03",
-            titleParts: [
-                { text: "READABLE ", highlight: false },
-                { text: "CODE", highlight: true },
-            ],
-            description: "Write things that are easy to revisit later, because future-you is a real collaborator.",
-            align: "left",
-        },
-        {
-            number: "04",
-            titleParts: [
-                { text: "NEXT ", highlight: false },
-                { text: "DIRECTION", highlight: true },
-            ],
-            description: "Move toward roles and projects where I can build products, learn fast, and stay useful.",
-            align: "right",
-        },
-    ];
+ const principles = [
+  {
+    number: "01",
+    titleParts: [
+      { text: "LEARN", highlight: true },
+      { text: " BY BUILDING", highlight: false },
+    ],
+    description:
+      "The best way I learn is by building. Every project starts with curiosity and ends with new knowledge.",
+    align: "left",
+  },
+  {
+    number: "02",
+    titleParts: [
+      { text: "STAY ", highlight: false },
+      { text: "CURIOUS", highlight: true },
+    ],
+    description:
+      "I enjoy exploring different technologies and ideas instead of limiting myself to a single path.",
+    align: "right",
+  },
+  {
+    number: "03",
+    titleParts: [
+      { text: "ITERATE", highlight: true },
+      { text: " CONSTANTLY", highlight: false },
+    ],
+    description:
+      "Every version teaches me something. I refine through experimentation, feedback, and continuous improvement.",
+    align: "left",
+  },
+  {
+    number: "04",
+    titleParts: [
+      { text: "BUILD ", highlight: false },
+      { text: " FOR PEOPLE", highlight: true },
+    ],
+    description:
+      "Whether it's a tool, an experiment, or a product, I want the things I build to be genuinely useful.",
+    align: "right",
+  },
+];
 
     useEffect(() => {
         if (!sectionRef.current || !headerRef.current || !principlesRef.current) return;

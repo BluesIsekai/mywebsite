@@ -60,7 +60,8 @@ export function HeroSection() {
                 </SplitFlapAudioProvider>
 
                 <h2 className="mt-4 font-[var(--font-bebas)] text-[clamp(1.2rem,2.8vw,2.2rem)] tracking-[0.02em] text-muted-foreground/80">
-                    Developer, builder, and constant work in progress
+                    Building ideas into reality.
+                    Still learning every day.
                 </h2>
 
                 <p className="mt-12 max-w-lg font-mono text-[15px] leading-8 text-muted-foreground/85">
@@ -88,7 +89,7 @@ export function HeroSection() {
             {/* Floating info tag */}
             <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12">
                 <div className="border border-border px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    v.01 / Portfolio Build
+                    v1.0 / ALWAYS EVOLVING
                 </div>
             </div>
         </section>

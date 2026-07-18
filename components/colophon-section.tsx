@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -9,59 +10,69 @@ gsap.registerPlugin(ScrollTrigger);
 export function ColophonSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
-    const gridRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const bodyRef = useRef<HTMLParagraphElement>(null);
+    const dividerRef = useRef<HTMLDivElement>(null);
     const footerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!sectionRef.current) return;
 
         const ctx = gsap.context(() => {
-            // Header slide in
-            if (headerRef.current) {
-                gsap.from(headerRef.current, {
-                    x: -60,
-                    opacity: 0,
-                    duration: 1,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: headerRef.current,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse",
-                    },
-                });
-            }
+            gsap.from(headerRef.current, {
+                x: -40,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: "top 90%",
+                },
+            });
 
-            // Grid columns fade up with stagger
-            if (gridRef.current) {
-                const columns = gridRef.current.querySelectorAll(":scope > div");
-                gsap.from(columns, {
-                    y: 40,
-                    opacity: 0,
-                    duration: 0.8,
-                    stagger: 0.1,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: gridRef.current,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse",
-                    },
-                });
-            }
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: titleRef.current,
+                    start: "top 82%",
+                },
+            });
 
-            // Footer fade in
-            if (footerRef.current) {
-                gsap.from(footerRef.current, {
-                    y: 20,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: footerRef.current,
-                        start: "top 95%",
-                        toggleActions: "play none none reverse",
+            tl.from(titleRef.current, {
+                y: 120,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power4.out",
+            })
+                .from(
+                    bodyRef.current,
+                    {
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "power3.out",
                     },
-                });
-            }
+                    "-=0.6"
+                )
+                .from(
+                    dividerRef.current,
+                    {
+                        scaleX: 0,
+                        transformOrigin: "left center",
+                        duration: 0.8,
+                        ease: "power2.out",
+                    },
+                    "-=0.3"
+                )
+                .from(
+                    footerRef.current,
+                    {
+                        y: 20,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    },
+                    "-=0.4"
+                );
         }, sectionRef);
 
         return () => ctx.revert();
@@ -71,108 +82,92 @@ export function ColophonSection() {
         <section
             ref={sectionRef}
             id="colophon"
-            className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12 border-t border-border/30"
+            className="relative border-t border-border/30 py-32 md:py-40 px-6 md:px-16 lg:px-24 overflow-hidden"
         >
-            {/* Section header */}
-            <div ref={headerRef} className="mb-16">
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">04 / Contact</span>
-                <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">LINKS</h2>
+            {/* Header */}
+            <div ref={headerRef}>
+                <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
+                    05 / OUTRO
+                </span>
             </div>
 
-            {/* Multi-column layout */}
-            <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12">
-                {/* Design */}
-                <div className="col-span-1">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Name</h4>
-                    <ul className="space-y-2">
-                        <li className="font-mono text-xs text-foreground/80">BluesIsekai</li>
-                        <li className="font-mono text-xs text-foreground/80">Portfolio Builder</li>
-                    </ul>
-                </div>
+            {/* Hero Outro */}
+            <div className="mt-14">
+                <h2
+                    ref={titleRef}
+                    className="font-[var(--font-bebas)] uppercase leading-[0.9] tracking-tight text-[clamp(4rem,9vw,10rem)]"
+                >
+                    UNTIL THE NEXT COMMIT.
+                </h2>
 
-                {/* Stack */}
-                <div className="col-span-1">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-                        Stack
-                    </h4>
-                    <ul className="space-y-2">
-                        <li className="font-mono text-xs text-foreground/80">Next.js</li>
-                        <li className="font-mono text-xs text-foreground/80">Tailwind CSS</li>
-                        <li className="font-mono text-xs text-foreground/80">Vercel</li>
-                    </ul>
-                </div>
-
-                {/* Typography */}
-                <div className="col-span-1">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-                        Focus
-                    </h4>
-                    <ul className="space-y-2">
-                        <li className="font-mono text-xs text-foreground/80">Web UI</li>
-                        <li className="font-mono text-xs text-foreground/80">Open Source</li>
-                        <li className="font-mono text-xs text-foreground/80">Creative Coding</li>
-                    </ul>
-                </div>
-
-                {/* Location */}
-                <div className="col-span-1">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-                        Location
-                    </h4>
-                    <ul className="space-y-2">
-                        <li className="font-mono text-xs text-foreground/80">Remote</li>
-                        <li className="font-mono text-xs text-foreground/80">Open to remote roles</li>
-                    </ul>
-                </div>
-
-                {/* Contact */}
-                <div className="col-span-1">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-                        Contact
-                    </h4>
-                    <ul className="space-y-2">
-                        <li>
-                            <a
-                                href="https://github.com/bluesisekai"
-                                className="font-mono text-xs text-foreground/80 hover:text-accent transition-colors duration-200"
-                            >
-                                GitHub
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.linkedin.com/in/your-linkedin-handle/"
-                                className="font-mono text-xs text-foreground/80 hover:text-accent transition-colors duration-200"
-                            >
-                                LinkedIn
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Year */}
-                <div className="col-span-1">
-                    <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">
-                        Looking For
-                    </h4>
-                    <ul className="space-y-2">
-                        <li className="font-mono text-xs text-foreground/80">Frontend work</li>
-                        <li className="font-mono text-xs text-foreground/80">Product teams</li>
-                    </ul>
-                </div>
+                <p
+                    ref={bodyRef}
+                    className="mt-12 max-w-2xl font-mono text-[15px] leading-8 text-muted-foreground"
+                >
+                    This portfolio is a snapshot of my journey so far.
+                    <br />
+                    Every project began as an idea worth exploring, and every one
+                    taught me something along the way.
+                    <br />
+                    <br />
+                    Thanks for taking the time to explore my work.
+                </p>
             </div>
 
-            {/* Bottom copyright */}
+            {/* Divider */}
+            <div
+                ref={dividerRef}
+                className="mt-24 h-px w-full bg-border/20"
+            />
+
+            {/* Footer */}
             <div
                 ref={footerRef}
-                className="mt-24 pt-8 border-t border-border/20 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+                className="mt-10 flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
             >
-                <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-                    © 2026 BluesIsekai. All rights reserved.
-                </p>
-                <p className="font-mono text-[10px] text-muted-foreground">
-                    Built to showcase projects, growth, and the work ahead.
-                </p>
+                {/* Links */}
+                <div className="flex flex-wrap gap-8">
+                    {[
+                        {
+                            name: "GitHub",
+                            href: "https://github.com/bluesisekai",
+                        },
+                        {
+                            name: "LinkedIn",
+                            href: "https://www.linkedin.com/in/tanishq-joshi-b9a90a326/",
+                        },
+                        {
+                            name: "Email",
+                            href: "mailto:joshitanishq9@gmail.com",
+                        },
+                    ].map((item) => (
+                        <a
+                            key={item.name}
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground transition-colors duration-300 hover:text-accent"
+                        >
+                            <span>{item.name}</span>
+
+                            <ArrowUpRight
+                                size={12}
+                                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            />
+                        </a>
+                    ))}
+                </div>
+
+                {/* Credits */}
+                <div className="text-left md:text-right">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                        Designed & Developed by BluesIsekai
+                    </p>
+
+                    <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground/60">
+                        Version 1.0 · Always evolving.
+                    </p>
+                </div>
             </div>
         </section>
     );
