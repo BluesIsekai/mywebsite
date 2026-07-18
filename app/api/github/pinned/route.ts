@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-//export const revalidate = 3600; // Cache the response for 1 hour
+export const revalidate = 3600; // Cache the response for 1 hour
 
 const GITHUB_GRAPHQL_API = "https://api.github.com/graphql";
 
@@ -63,20 +63,6 @@ export async function GET() {
   }
 
   try {
-    // const response = await fetch(GITHUB_GRAPHQL_API, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${token}`,
-    //     "User-Agent": "portfolio-app",
-    //   },
-    //   body: JSON.stringify({
-    //     query: PINNED_REPOS_QUERY,
-    //     variables: { username },
-    //   }),
-    //   next: { revalidate: 3600 },
-    // });
-
     const response = await fetch(GITHUB_GRAPHQL_API, {
       method: "POST",
       headers: {
@@ -88,8 +74,22 @@ export async function GET() {
         query: PINNED_REPOS_QUERY,
         variables: { username },
       }),
-      cache: "no-store",
+      next: { revalidate: 3600 },
     });
+
+    // const response = await fetch(GITHUB_GRAPHQL_API, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${token}`,
+    //     "User-Agent": "portfolio-app",
+    //   },
+    //   body: JSON.stringify({
+    //     query: PINNED_REPOS_QUERY,
+    //     variables: { username },
+    //   }),
+    //   cache: "no-store",
+    // });
 
     if (!response.ok) {
       const errorText = await response.text();
