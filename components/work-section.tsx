@@ -95,6 +95,7 @@ export function WorkSection() {
 
     return (
         <section ref={sectionRef} id="work" className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12">
+
             {/* Section header */}
             <div ref={headerRef} className="mb-16 flex items-end justify-between">
                 <div>

@@ -11,7 +11,7 @@ export function PrinciplesSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const principlesRef = useRef<HTMLDivElement>(null);
-
+    //Headings
     const principles = [
         {
             number: "01",

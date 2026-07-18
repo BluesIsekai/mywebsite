@@ -4,6 +4,7 @@ import { WorkSection } from "@/components/work-section"
 import { PrinciplesSection } from "@/components/principles-section"
 import { ColophonSection } from "@/components/colophon-section"
 import { SideNav } from "@/components/side-nav"
+import { SectionCursorWrapper } from "@/components/section-cursor-wrapper"
 
 export default function Page() {
   return (
@@ -13,8 +14,10 @@ export default function Page() {
 
       <div className="relative z-10">
         <HeroSection />
-        <SignalsSection />
-        <WorkSection />
+        <SectionCursorWrapper>
+          <SignalsSection />
+          <WorkSection />
+        </SectionCursorWrapper>
         <PrinciplesSection />
         <ColophonSection />
       </div>

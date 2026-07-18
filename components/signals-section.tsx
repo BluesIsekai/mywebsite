@@ -3,30 +3,31 @@
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Highlights (WHO I AM)
 const profileHighlights = [
     {
-        date: "GitHub",
-        title: "BluesIsekai",
-        note: "Public profile and source of truth for ongoing projects, forks, and experiments.",
+        date: "Why",
+        title: "Building Publicly",
+        note: "I enjoy turning ideas into real projects and sharing the process as I learn.",
     },
     {
-        date: "Now",
-        title: "Building",
-        note: "Focused on web interfaces, creative coding, and useful tools that can ship publicly.",
+        date: "How",
+        title: "Always Learning",
+        note: "Every project pushes me to learn something new, whether it's a framework, a concept, or an entirely different way of thinking.",
     },
     {
-        date: "LinkedIn",
-        title: "Professional profile",
-        note: "Add your LinkedIn URL here so recruiters and collaborators can find you quickly.",
+        date: "What",
+        title: "Curiosity First",
+        note: "I like experimenting, solving problems, and creating things that are useful, interesting, or simply fun to build.",
     },
     {
-        date: "Focus",
-        title: "What I want",
-        note: "A role where I can build polished products, improve systems, and keep learning in public.",
+        date: "Next",
+        title: "Keep Growing",
+        note: "My goal is simple: keep building better software, keep learning from every project, and never stop improving.",
     },
 ];
 
@@ -35,41 +36,6 @@ export function SignalsSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
-    const cursorRef = useRef<HTMLDivElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
-
-    useEffect(() => {
-        if (!sectionRef.current || !cursorRef.current) return;
-
-        const section = sectionRef.current;
-        const cursor = cursorRef.current;
-
-        const handleMouseMove = (e: MouseEvent) => {
-            const rect = section.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            gsap.to(cursor, {
-                x: x,
-                y: y,
-                duration: 0.5,
-                ease: "power3.out",
-            });
-        };
-
-        const handleMouseEnter = () => setIsHovering(true);
-        const handleMouseLeave = () => setIsHovering(false);
-
-        section.addEventListener("mousemove", handleMouseMove);
-        section.addEventListener("mouseenter", handleMouseEnter);
-        section.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-            section.removeEventListener("mousemove", handleMouseMove);
-            section.removeEventListener("mouseenter", handleMouseEnter);
-            section.removeEventListener("mouseleave", handleMouseLeave);
-        };
-    }, []);
 
     useEffect(() => {
         if (!sectionRef.current || !headerRef.current || !cardsRef.current) return;
@@ -118,20 +84,11 @@ export function SignalsSection() {
 
     return (
         <section id="signals" ref={sectionRef} className="relative py-32 pl-6 md:pl-28">
-            <div
-                ref={cursorRef}
-                className={cn(
-                    "pointer-events-none absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-50",
-                    "w-12 h-12 rounded-full border-2 border-accent bg-accent",
-                    "transition-opacity duration-300",
-                    isHovering ? "opacity-100" : "opacity-0",
-                )}
-            />
 
             {/* Section header */}
             <div ref={headerRef} className="mb-16 pr-6 md:pr-12">
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">01 / About</span>
-                <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">WHO I AM</h2>
+                <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">WHY I BUILD</h2>
             </div>
 
             {/* Horizontal scroll container */}
