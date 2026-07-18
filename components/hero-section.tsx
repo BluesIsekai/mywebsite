@@ -52,21 +52,20 @@ export function HeroSection() {
             <div ref={contentRef} className="flex-1 w-full">
                 <SplitFlapAudioProvider>
                     <div className="relative">
-                        <SplitFlapText text="PORTFOLIO" speed={80} />
+                        <SplitFlapText text="BLUESISEKAI" speed={80} />
                         <div className="mt-4">
                             <SplitFlapMuteToggle />
                         </div>
                     </div>
                 </SplitFlapAudioProvider>
 
-                <h2 className="font-[var(--font-bebas)] text-muted-foreground/60 text-[clamp(1rem,3vw,2rem)] mt-4 tracking-wide">
+                <h2 className="mt-4 font-[var(--font-bebas)] text-[clamp(1.2rem,2.8vw,2.2rem)] tracking-[0.02em] text-muted-foreground/80">
                     Developer, builder, and constant work in progress
                 </h2>
 
-                <p className="mt-12 max-w-md font-mono text-sm text-muted-foreground leading-relaxed">
-                    I&apos;m BluesIsekai. I build web experiences, experiments, and tools that keep getting better over
-                    time. This portfolio collects selected GitHub projects, a LinkedIn profile, and the direction
-                    I&apos;m growing in.
+                <p className="mt-12 max-w-lg font-mono text-[15px] leading-8 text-muted-foreground/85">
+                    I'm BluesIsekai. I build interfaces, experiments, and systems—always learning, always iterating.
+                    This portfolio is a snapshot of that journey.
                 </p>
 
                 <div className="mt-16 flex items-center gap-8">
